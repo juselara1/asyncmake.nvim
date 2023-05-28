@@ -9,7 +9,7 @@ class TestParser():
         parse_config = ParseConfig(
                 rule_pattern=re.compile(r"^(?P<rule>\w+):")
                 )
-        file = load(Path("test/data/Makefile1"))
+        file = load(Path("test/data/Makefile"))
         parsed_file = parse(file, parse_config)
         assert isinstance(parsed_file, ParsedFile)
         assert (
