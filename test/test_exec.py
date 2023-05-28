@@ -2,8 +2,8 @@ import os
 from asyncmake.exec.base import Command
 from asyncmake.exec.make import MakeExecutor
 
-class TestExecutor:
 
+class TestExecutor:
     def test_make(self):
         os.chdir("test/data/")
         command = Command(cmd="rule1")
