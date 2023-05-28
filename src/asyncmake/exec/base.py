@@ -2,9 +2,11 @@ from abc import ABC, abstractmethod
 from typing import Self
 from pydantic import BaseModel
 
+
 class Command(BaseModel):
     cmd: str
     status: int = -1
+
 
 class AbstractExecutor(ABC):
     command: Command
