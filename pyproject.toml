@@ -16,4 +16,4 @@ dependencies = [
 where = ["src/"]
 
 [project.optional-dependencies]
-dev = ["flit", "black"]
+dev = ["flit", "black", "pytest"]
