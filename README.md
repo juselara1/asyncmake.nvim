@@ -1,6 +1,9 @@
 # asyncmake.nvim
 ---
 
+<a href="https://pypi.python.org/pypi/asyncmake"><img src="https://img.shields.io/pypi/v/asyncmake.svg"/></a>
+<a href="https://github.com/psf/black"><img src="https://img.shields.io/badge/code%20style-black-000000.svg"/></a>
+
 ![demo](docs/file.gif)
 
 `asyncmake.nvim` is a Neovim plugin that orchestrates `make` calls asynchronously.
@@ -14,7 +17,7 @@ To install `asyncmake.nvim`, you need to install the Python package via `pip`:
 pip install asyncmake
 ```
 
-After that, you can use any plugin manager. For example, with `plug`:
+After that, you can use any plugin manager. For example, with `packer`:
 
 ```lua
 use {
