@@ -12,6 +12,7 @@ from asyncmake.exec.make import MakeExecutor
 
 Args = List[str]
 
+
 @plugin
 class AsyncMake:
     search_config: SearchConfig
@@ -25,26 +26,28 @@ class AsyncMake:
 
     def load_config(self):
         self.search_config = SearchConfig(
-                start_path=Path(str(self.nvim.call("getcwd"))),
-                pattern=re.compile(r"Makefile"),
-                max_depth=5
-            )
+            start_path=Path(str(self.nvim.call("getcwd"))),
+            pattern=re.compile(r"Makefile"),
+            max_depth=5,
+        )
         self.parse_config = ParseConfig(
-                rule_pattern=re.compile(r"^(?P<rule>[a-zA-Z\-_%]+):")
-                )
+            rule_pattern=re.compile(r"^(?P<rule>[a-zA-Z\-_%]+):")
+        )
 
-    @command(name="Make", nargs="*", sync=False, range="") # type: ignore
+    @command(name="Make", nargs="*", sync=False, range="")  # type: ignore
     def make(self, args: Args, range=None):
         cmd = " ".join(args)
         self.nvim.api.exec2(f"MakeStartMsg {cmd}", {})
         self.search_config.start_path = Path(str(self.nvim.call("getcwd")))
         self.searcher.search()
-            
+
         self.executor.setup(command=Command(cmd=cmd), path=self.searcher.path).execute()
         if self.executor.command.status == 0:
             self.nvim.api.exec2(f"MakeEndMsg {cmd}", {})
         else:
-            self.nvim.api.exec2(f"MakeErr {cmd} with status {self.executor.command.status}", {})
+            self.nvim.api.exec2(
+                f"MakeErr {cmd} with status {self.executor.command.status}", {}
+            )
 
     @command("MakeParsedOpts", nargs=0, sync=True, range="")
     def make_parsed_opts(self, args: Args, range=None) -> str:
