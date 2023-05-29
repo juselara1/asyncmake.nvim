@@ -17,7 +17,7 @@ To install `asyncmake.nvim`, you need to install the Python package via `pip`:
 pip install asyncmake
 ```
 
-After that, you can use any plugin manager. For example, with `plug`:
+After that, you can use any plugin manager. For example, with `packer`:
 
 ```lua
 use {
