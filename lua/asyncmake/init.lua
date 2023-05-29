@@ -54,6 +54,7 @@ local make_fuzzy = function(opts)
         finder = finders.new_table {
             results = split(values.output, " ")
         },
+        sorter = conf.generic_sorter({}),
         attach_mappings = function(prompt_bufnr, map)
             actions.select_default:replace(function()
                 actions.close(prompt_bufnr)
