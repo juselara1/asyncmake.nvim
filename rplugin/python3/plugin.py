@@ -33,10 +33,9 @@ class AsyncMake:
                 rule_pattern=re.compile(r"^(?P<rule>\w+):")
                 )
 
-    @command(name="Make", nargs="*", sync=False, range="") # type: ignore
+    @command(name="MakeFn", nargs="*", sync=True, range="") # type: ignore
     def make(self, args: Args, range=None):
         cmd = " ".join(args)
         self.search_config.start_path = Path(str(self.nvim.call("getcwd")))
         self.searcher.search()
         self.executor.setup(command=Command(cmd=cmd), path=self.searcher.path).execute()
-        self.nvim.current.line = str(self.executor.command.status)
