@@ -4,9 +4,12 @@ from re import Match
 from typing import Callable, Self
 from asyncmake.search.base import AbstractSearcher
 
+
 class Searcher(AbstractSearcher):
     def search(self: Self) -> Self:
-        fn_match: Callable[[Path], Match | None] = lambda path: re.search(self.config.pattern, path.stem)
+        fn_match: Callable[[Path], Match | None] = lambda path: re.search(
+            self.config.pattern, path.stem
+        )
         cur_depth = 1
         cur_path = self.config.start_path
         files = map(fn_match, cur_path.glob("*"))
