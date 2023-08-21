@@ -1,5 +1,3 @@
-SHELL=/bin/bash
-
 all: install unittest
 
 install:

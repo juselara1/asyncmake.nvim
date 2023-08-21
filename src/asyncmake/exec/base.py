@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
-from typing import Self
 from pydantic import BaseModel
 
 
@@ -13,11 +12,11 @@ class AbstractExecutor(ABC):
     command: Command
     path: Path
 
-    def setup(self: Self, command: Command, path: Path) -> Self:
+    def setup(self, command: Command, path: Path) -> "AbstractExecutor":
         self.command = command
         self.path = path
         return self
 
     @abstractmethod
-    def execute(self: Self) -> Self:
+    def execute(self) -> "AbstractExecutor":
         ...
