@@ -1,12 +1,12 @@
 import re
 from pathlib import Path
 from re import Match
-from typing import Callable, Self
+from typing import Callable
 from asyncmake.search.base import AbstractSearcher
 
 
 class Searcher(AbstractSearcher):
-    def search(self: Self) -> Self:
+    def search(self) -> "Searcher":
         fn_match: Callable[[Path], Match | None] = lambda path: re.search(
             self.config.pattern, path.stem
         )
