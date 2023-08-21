@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from pathlib import Path
 from re import Pattern
-from typing import Self
 from pydantic import BaseModel
 
 
@@ -15,10 +14,10 @@ class AbstractSearcher(ABC):
     config: SearchConfig
     path: Path
 
-    def setup(self: Self, search_config: SearchConfig) -> Self:
+    def setup(self, search_config: SearchConfig) -> "AbstractSearcher":
         self.config = search_config
         return self
 
     @abstractmethod
-    def search(self: Self) -> Self:
+    def search(self) -> "AbstractSearcher":
         ...
